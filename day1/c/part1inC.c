@@ -42,7 +42,6 @@ int main()
                     }
                     lastNumber = data[i][x] - '0';
                 }
-            
         }
         sum = sum + ((firstNumber * 10) + lastNumber);
     }
