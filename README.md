@@ -1,4 +1,4 @@
 # Advent-of-Code-2023
 ## Day 1
-python - complete
-C - wip for part 1. redo memory allocation since it becomes jambled at the end
+python - complete    
+C - done with part 1. 0% on part 2
