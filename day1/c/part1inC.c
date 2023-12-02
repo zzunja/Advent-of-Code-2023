@@ -1,14 +1,11 @@
 #include <stdio.h>
-#include <ctype.h>
-
-//just wipe this shit. start again. u cna proib do it without a 2d array.
 
 int main()
 {
-    char data[1000][50]; //thjis is just the input
+    char data[1200][50]; //thjis is just the input. have to set it to 1200 seems to be the sweet spot for it. there is prob a way to dynimically do this, but idc
     int line = 0; 
-    long long int sum = 0;
-    int firstNumber,lastNumber, temp; //remove temp
+    int sum = 0; //have to do this sepeartly for some reason. otherwise segmation error
+    int firstNumber, lastNumber, temp; 
 
     //opens the file and sets a buffer for each line of 255 bytes
     FILE *pF = fopen("input.txt", "r");
@@ -16,14 +13,14 @@ int main()
 
     //error check
     if(pF == NULL){
-        printf("Error opening file.\n");
+        printf("Error opening file. Make sure it's in the folder with the program.\n");
         return 1;
     }
 
     //moves data into an 2d array
     while(!feof(pF) && !ferror(pF)) // return true once at the end of the file
     {
-        if(fgets(data[line], 1000, pF) != NULL)
+        if(fgets(data[line], 5000, pF) != NULL)
         {
             line++;
         }
@@ -31,30 +28,24 @@ int main()
     fclose(pF); //closes file since we moved it into the data varaible
 
 
-    for(int i = 0; i < line; i++) //checks every line 
+    for(int i = 0; i < line; i++) //checks every line in the 2d array
     {
-        temp = 0;
+        firstNumber, lastNumber, temp = 0;
         for(int x = 0; x < sizeof(data[i])/sizeof(data[i][0]); x++) //checks every character. do not know how this works
         {
-            printf("%c", data[i][x]);
             if(data[i][x] >= '0' && data[i][x] <= '9') //checks if it is a number
                 {
-                    if(temp == 0)
+                    if(temp == 0) //this checks the first number. if its the first run thorugh, move it to first number and increase temp so its never ran again
                     {
                         firstNumber = data[i][x] - '0';
                         temp++;
                     }
                     lastNumber = data[i][x] - '0';
-                    //printf("firstNumber: %d lastNumber: %d data: %c\n", firstNumber, lastNumber, data[i][x]);
                 }
             
         }
-        sum = sum + (firstNumber + lastNumber);
+        sum = sum + ((firstNumber * 10) + lastNumber);
     }
-
-
-
-//printf("%c", data[0][0]); im gonna kms ngl wtf all i had to do was change it to c instad of s
 
     printf("\n%d", sum);
     return 0;
