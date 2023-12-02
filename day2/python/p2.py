@@ -12,14 +12,11 @@ for i in data:  #strips the :, but stores the game ID
     temp = i.split(': ', 1)
     if len(temp) > 0:
         i = temp[1]
-    numData = ''.join([char for char in temp[0] if char.isdigit()])
-
 
     #i could def remove one of tehse varaibles
     gameSet = []
     resultDic = {} 
     redCubes = greenCubes = blueCubes = 0
-
 
     temp = 0 # for the while loop
     z = 0 # for the while loop
@@ -33,7 +30,6 @@ for i in data:  #strips the :, but stores the game ID
         gameSet.append(i[z:index[temp]])
         z = index[temp] + 2
         temp += 1
-
 
     # splits the sets into each "grab" than does the math. i think
     for x in gameSet: 
@@ -58,9 +54,7 @@ for i in data:  #strips the :, but stores the game ID
             temp3 = temp.split(' ')
             resultDic = ({temp3[1]:temp3[0]}) # ok i truly do not know why .update does not work here. the onyl answer is python is glazing the last thing or something. 
         
-
         # done with formating
-        #print(resultDic)
         if 'red' in resultDic:
             if redCubes < int(resultDic['red']):
                 redCubes = int(resultDic['red'])
