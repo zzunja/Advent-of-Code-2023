@@ -1,6 +1,6 @@
 import re
 
-with open("input.txt") as f:
+with open("day3/input.txt") as f:
     data = f.read().splitlines()
 
 numArr = []
@@ -11,10 +11,8 @@ numArr = [x for x in numArr if x.isdigit()]
 numArr = list(set(numArr))
 
 lineCount = 0
-string = []
 finish = 0
 bufferList = []
-
 
 for lines in data:
     for char in lines:
@@ -32,21 +30,18 @@ for lines in data:
                             else:
                                 indexChar += tmp + 1
                                 numberBehind = False
-                    
                         #cuts 3 digits from the index we got from above
                         string = re.split(r'\D+', data[lineCount + indexLines][(symbolIndex + indexChar):(symbolIndex + indexChar) + 3])
 
                         for z in string: #thinik i could do this with list comprehension but idk how
                             if z in numArr:
                                 bufferList.append(z)
-
-                # this part is fixing something that doesnt even fucking matter sicne its so improbable that it doesnt happen in the data. kms
+            # adds up the stuff
             bufferList = list(set(bufferList))
             finish += sum(map(int, bufferList))
             bufferList = [] 
-
-            lines = lines[:symbolIndex] + '.' + lines[symbolIndex + 1:] # replace the symbol with a period
-
+            # replace the symbol with a period
+            lines = lines[:symbolIndex] + '.' + lines[symbolIndex + 1:] 
     lineCount += 1
 
 print(finish)
