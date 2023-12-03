@@ -14,14 +14,7 @@ for game in data.split('\n'): #split at every new line. which is every game
         for individualGame in gameSet.split(', '):
             gameDict.update({individualGame.split(' ')[1] : individualGame.split(' ')[0]})
         
-        #there is prob a better way to do this
-        if 'red' in gameDict:
-            redCubes = int(gameDict['red'])
-        if 'green' in gameDict:
-            greenCubes = int(gameDict['green'])
-        if 'blue' in gameDict:
-            blueCubes = int(gameDict['blue'])
-
+        redCubes, greenCubes, blueCubes = (int(gameDict[color]) if color in gameDict else 0 for color in ['red', 'green', 'blue']) 
 
         if redCubes > 12 or greenCubes > 13 or blueCubes > 14:
             lose = 1
