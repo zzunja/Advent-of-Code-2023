@@ -1,7 +1,7 @@
 def find(s, ch):
     return [i for i, ltr in enumerate(s) if ltr == ch]
 
-with open('input.txt', 'r') as f:
+with open('test.txt', 'r') as f:
     data = [line.rstrip() for line in f]
 
 # varaibles
@@ -82,6 +82,6 @@ for i in data:  #strips the :, but stores the game ID
     if(addWin > 0):
         win += int(numData)
 
-print(win) 
+    print(win) 
 
 # this might be the worst code i have ever written. 
