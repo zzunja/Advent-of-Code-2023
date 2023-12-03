@@ -30,14 +30,3 @@ for game in data.split('\n'): #split at every new line. which is every game
     if lose == 0:
         win = int(id) + win
 print(win)
-
-
-    
-        
-
-        
-        
-
-        
-
-
