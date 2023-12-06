@@ -2,7 +2,7 @@ import os
 
 with open(f'{os.getcwd()}/day6/input.txt') as f:
     data = f.read()
-    
+
 #formatting
 time, distanceList = data.split('\n')
 time = time.split(':')[1]
@@ -11,9 +11,9 @@ time = list(filter(None, time))
 distanceList = distanceList.split(':')[1]
 distanceList = distanceList.split(' ')
 distanceList = list(filter(None, distanceList))
+
 tmp = 0
 trueWin = 1
-
 for race in time: # for every new race
     win = 0
     y = 0
@@ -30,5 +30,3 @@ for race in time: # for every new race
     tmp += 1
 
 print(trueWin)
-
-

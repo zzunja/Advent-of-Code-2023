@@ -3,12 +3,12 @@ import os
 with open(f'{os.getcwd()}/day6/input.txt') as f:
     data = f.read()
 
+#formatting
 time, distanceList = data.split('\n')
 time = time.split(':')[1]
 time = ''.join([char for char in time if char.isdigit()])
 distanceList = distanceList.split(':')[1]
 distanceList = ''.join([char for char in distanceList if char.isdigit()])
-win = y = 0
 
 #prints a 1 if it won, a 0 if it didnt
 def calculate(y):
@@ -20,7 +20,7 @@ def calculate(y):
         return(1)
     return(0)
 
-
+win = y = 0
 while y < int(time):
     if calculate(y) == 1:
         win += 1
