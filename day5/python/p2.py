@@ -40,6 +40,7 @@ for i in seeds:
         if float(returnSeed(y)) < win:
             win = float(returnSeed(y))
     test += 1
+    print(test)
 
 
 
