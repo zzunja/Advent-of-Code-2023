@@ -1,7 +1,9 @@
-with open('test.txt') as f:
+#this works, but ti woudl take 5 years to do.
+
+
+with open('input.txt') as f:
     data = f.read()
 
-#is there a better way to do this?
 seeds = data.split('\n')[0] 
 seeds = seeds.split(': ')[1]
 seeds = seeds.split()
@@ -10,7 +12,10 @@ games.remove(games[0])
 games = list(filter(None, games))
 win = float('inf')
 
-for individualSeed in seeds:
+rangeSeeds = seeds[1::2]
+seeds = seeds[::2]
+
+def returnSeed(individualSeed):
     bestLocation = int(individualSeed)
     for y in games:
         eachGarden = y.split(':')[1]
@@ -21,15 +26,22 @@ for individualSeed in seeds:
             tmpDict = {}
             destRange, sourceRange, rangeLength = z.split(' ')
             destRange, sourceRange, rangeLength = int(destRange), int(sourceRange), int(rangeLength)
-            if bestLocation in range(sourceRange, (sourceRange + rangeLength)):
+            if bestLocation > sourceRange - 1 and bestLocation < sourceRange + rangeLength:
                 ranTime = bestLocation - sourceRange # so it looks a little better
                 tmpDict[bestLocation] = ranTime + destRange
                 mainDict.update(tmpDict)
         if bestLocation in mainDict:
             bestLocation = mainDict[bestLocation]
-    if float(bestLocation) < float(win):
-        win = float(bestLocation)
+    return bestLocation
+
+test = 0
+for i in seeds:
+    for y in range(int(i), int(rangeSeeds[test]) + int(i)):
+        if float(returnSeed(y)) < win:
+            win = float(returnSeed(y))
+    test += 1
+    print(test)
+
+
 
 print(int(win))
-
-
